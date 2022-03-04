@@ -11,9 +11,18 @@ export default function App() {
     <div>
       <h1>Todo List</h1>
 
-      <TodoList />
+      <TodoList todos={todos} />
     </div>
   );
 }
 
-function TodoList() {}
+function TodoList(props) {
+  return (
+    <ul>
+      {props.todos.map((todo) => (
+        <li>{todo.text}</li>
+      ))}
+    </ul>
+  );
+  // console.log(props);
+}
