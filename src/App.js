@@ -12,17 +12,27 @@ export default function App() {
       <h1>Todo List</h1>
 
       <TodoList todos={todos} />
+      <AddTodo />
     </div>
   );
 }
 
-function TodoList(props) {
+function TodoList({ todos }) {
   return (
     <ul>
-      {props.todos.map((todo) => (
-        <li>{todo.text}</li>
+      {todos.map((todo) => (
+        <li key={todo.id}>{todo.text}</li>
       ))}
     </ul>
   );
   // console.log(props);
+}
+
+function AddTodo() {
+  return (
+    <form>
+      <input placeholder="Add todo" />
+      <button type="submit">Submit</button>
+    </form>
+  );
 }
