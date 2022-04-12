@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 // import "./styles.css";
 
 export default function App() {
@@ -30,6 +30,8 @@ function TodoList({ todos }) {
 }
 
 function AddTodo({ setTodos }) {
+  const inputRef = useRef();
+
   function handleAddTodo(event) {
     event.preventDefault();
     const text = event.target.elements.addTodo.value;
@@ -41,10 +43,11 @@ function AddTodo({ setTodos }) {
     setTodos((prevTodos) => {
       return prevTodos.concat(todo);
     });
+    inputRef.current.value = "";
   }
   return (
     <form onSubmit={handleAddTodo}>
-      <input name="addTodo" placeholder="Add todo" />
+      <input name="addTodo" placeholder="Add todo" ref={inputRef} />
       <button type="submit">Submit</button>
     </form>
   );
